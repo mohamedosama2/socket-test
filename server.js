@@ -7,7 +7,12 @@ const express = require("express"),
 const app = express(),
   server = createServer(app),
   PORT = process.env.PORT || 8000,
-  io = socketio(server);
+  io = socketio(server, {
+    cors: {
+      origin: "http://localhost:3000",
+      methods: ["GET", "POST"],
+    },
+  });
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(express.static("public"));
